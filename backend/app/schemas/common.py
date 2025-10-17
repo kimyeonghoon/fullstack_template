@@ -3,6 +3,7 @@
 
 여러 API에서 재사용 가능한 공통 스키마를 정의합니다.
 """
+
 from typing import Optional, Dict, Any
 from pydantic import BaseModel, Field
 
@@ -24,6 +25,7 @@ class ErrorResponse(BaseModel):
             "details": {"email": "test@example.com"}
         }
     """
+
     error: str = Field(..., description="에러 코드")
     message: str = Field(..., description="에러 메시지")
     details: Optional[Dict[str, Any]] = Field(None, description="추가 에러 정보")
@@ -49,6 +51,7 @@ class PaginationParams(BaseModel):
         - skip은 0 이상
         - limit은 1~100 사이 (기본값: 20)
     """
+
     skip: int = Field(0, ge=0, description="건너뛸 항목 수")
     limit: int = Field(20, ge=1, le=100, description="가져올 최대 항목 수")
 
@@ -64,4 +67,5 @@ class MessageResponse(BaseModel):
     Example:
         {"message": "사용자가 성공적으로 삭제되었습니다"}
     """
+
     message: str = Field(..., description="메시지 내용")

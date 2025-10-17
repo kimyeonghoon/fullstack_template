@@ -12,6 +12,7 @@ Pydantic 스키마 정의
 - models/user.py: SQLAlchemy ORM 모델 (DB 테이블 구조)
 - schemas/user.py: Pydantic 스키마 (API 입출력 데이터 구조)
 """
+
 from pydantic import BaseModel, EmailStr, Field
 from typing import Optional
 from datetime import datetime
@@ -27,6 +28,7 @@ class UserBase(BaseModel):
         - 모든 필드가 Optional: 부분 업데이트 등에서 사용
         - password 필드는 제외: 보안상 일반 조회 시 노출 금지
     """
+
     email: Optional[EmailStr] = None
     username: Optional[str] = None
     full_name: Optional[str] = None
@@ -63,6 +65,7 @@ class UserCreate(BaseModel):
         - password는 평문으로 전송되므로 HTTPS 필수!
         - 서버에서 bcrypt로 해시 후 hashed_password로 저장
     """
+
     email: EmailStr
     username: str = Field(..., min_length=3, max_length=100)
     password: str = Field(..., min_length=8, max_length=100)
@@ -98,6 +101,7 @@ class UserUpdate(BaseModel):
             "full_name": "김철수"
         }
     """
+
     email: Optional[EmailStr] = None
     username: Optional[str] = None
     password: Optional[str] = None
@@ -123,6 +127,7 @@ class UserInDB(UserBase):
         - UserBase의 모든 필드 상속 (email, username, full_name 등)
         - hashed_password는 제외: 보안상 API 응답에 포함하지 않음
     """
+
     id: int
     created_at: datetime
     updated_at: Optional[datetime] = None
@@ -153,6 +158,7 @@ class User(UserInDB):
         - hashed_password는 절대 포함되지 않음 (보안)
         - 추후 avatar_url, last_login 등의 필드 추가 가능
     """
+
     pass
 
 
@@ -183,6 +189,7 @@ class Token(BaseModel):
         - refresh_token: 긴 만료 시간 (7일), 액세스 토큰 갱신에 사용
         - token_type: OAuth2 표준에 따라 "bearer"로 고정
     """
+
     access_token: str
     refresh_token: str
     token_type: str = "bearer"
@@ -209,6 +216,7 @@ class TokenPayload(BaseModel):
         - exp: JWT 표준 클레임, 토큰 만료 시각 (Unix timestamp)
         - 이 스키마는 API 요청/응답이 아닌 내부 검증용
     """
+
     sub: Optional[int] = None
     exp: Optional[int] = None
 
@@ -240,6 +248,7 @@ class LoginRequest(BaseModel):
         - 서버에서 username OR email 조건으로 검색
         - password는 평문으로 전송되므로 HTTPS 필수!
     """
+
     username: str
     password: str
 
@@ -262,6 +271,7 @@ class RefreshRequest(BaseModel):
         - 액세스 토큰 만료 시 사용
         - 리프레시 토큰도 만료되면 재로그인 필요
     """
+
     refresh_token: str
 
 
@@ -285,5 +295,6 @@ class TokenRefreshResponse(BaseModel):
         - 리프레시 토큰은 재발급하지 않음 (보안상)
         - 리프레시 토큰이 만료되면 재로그인 필요
     """
+
     access_token: str
     token_type: str = "bearer"

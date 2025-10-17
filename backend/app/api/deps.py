@@ -15,6 +15,7 @@ API 엔드포인트 의존성 함수
         # user는 자동으로 인증된 활성 사용자 객체
         return {"user_id": user.id}
 """
+
 from typing import Generator
 from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
@@ -29,7 +30,7 @@ security = HTTPBearer()
 
 def get_current_user(
     db: Session = Depends(get_db),
-    credentials: HTTPAuthorizationCredentials = Depends(security)
+    credentials: HTTPAuthorizationCredentials = Depends(security),
 ) -> User:
     """현재 인증된 사용자 가져오기
 

@@ -10,16 +10,14 @@
 - bcrypt: 비밀번호를 안전하게 저장하기 위한 해싱 알고리즘
 - Salt: bcrypt가 자동으로 생성하는 임의의 값 (같은 비밀번호도 다른 해시 생성)
 """
+
 from datetime import datetime, timedelta
 from typing import Optional
 from jose import jwt, JWTError
 from passlib.context import CryptContext
 from app.config import settings
 
-pwd_context = CryptContext(
-    schemes=["bcrypt"],
-    deprecated="auto"
-)
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
 def create_access_token(subject: int, expires_delta: Optional[timedelta] = None) -> str:
@@ -61,7 +59,9 @@ def create_access_token(subject: int, expires_delta: Optional[timedelta] = None)
         )
 
     to_encode = {"exp": expire, "sub": str(subject)}
-    encoded_jwt = jwt.encode(to_encode, settings.SECRET_KEY, algorithm=settings.ALGORITHM)
+    encoded_jwt = jwt.encode(
+        to_encode, settings.SECRET_KEY, algorithm=settings.ALGORITHM
+    )
     return encoded_jwt
 
 
@@ -97,7 +97,9 @@ def create_refresh_token(subject: int) -> str:
     """
     expire = datetime.utcnow() + timedelta(days=settings.REFRESH_TOKEN_EXPIRE_DAYS)
     to_encode = {"exp": expire, "sub": str(subject), "type": "refresh"}
-    encoded_jwt = jwt.encode(to_encode, settings.SECRET_KEY, algorithm=settings.ALGORITHM)
+    encoded_jwt = jwt.encode(
+        to_encode, settings.SECRET_KEY, algorithm=settings.ALGORITHM
+    )
     return encoded_jwt
 
 
@@ -209,7 +211,9 @@ def verify_refresh_token(token: str) -> Optional[int]:
         - 무효한 토큰은 None 반환 (에러 발생 안 함)
     """
     try:
-        payload = jwt.decode(token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM])
+        payload = jwt.decode(
+            token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM]
+        )
 
         user_id_str: str = payload.get("sub")
         token_type: str = payload.get("type")

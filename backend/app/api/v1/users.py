@@ -21,7 +21,7 @@ def read_users_me(current_user: User = Depends(get_current_active_user)):
 def update_user_me(
     user_in: UserUpdate,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
 ):
     """현재 사용자 정보 업데이트"""
     update_data = user_in.model_dump(exclude_unset=True)
@@ -34,20 +34,24 @@ def update_user_me(
     # 이메일 중복 확인
     if "email" in update_data:
         # RAW SQL: SELECT * FROM users WHERE email = ? AND id != ? LIMIT 1
-        existing_user = db.query(User).filter(
-            User.email == update_data["email"],
-            User.id != current_user.id
-        ).first()
+        existing_user = (
+            db.query(User)
+            .filter(User.email == update_data["email"], User.id != current_user.id)
+            .first()
+        )
         if existing_user:
             raise HTTPException(status_code=400, detail="Email already registered")
 
     # 사용자명 중복 확인
     if "username" in update_data:
         # RAW SQL: SELECT * FROM users WHERE username = ? AND id != ? LIMIT 1
-        existing_user = db.query(User).filter(
-            User.username == update_data["username"],
-            User.id != current_user.id
-        ).first()
+        existing_user = (
+            db.query(User)
+            .filter(
+                User.username == update_data["username"], User.id != current_user.id
+            )
+            .first()
+        )
         if existing_user:
             raise HTTPException(status_code=400, detail="Username already taken")
 
@@ -66,7 +70,7 @@ def update_user_me(
 def read_user_by_id(
     user_id: int,
     current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
 ):
     """특정 사용자 정보 조회"""
     # RAW SQL: SELECT * FROM users WHERE id = ? LIMIT 1
@@ -78,8 +82,7 @@ def read_user_by_id(
 
 @router.delete("/me", response_model=MessageResponse)
 def delete_current_user(
-    current_user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+    current_user: User = Depends(get_current_active_user), db: Session = Depends(get_db)
 ):
     """현재 사용자 삭제 (소프트 삭제)
 
@@ -112,10 +115,7 @@ def delete_current_user(
         - 하드 삭제는 GDPR 등의 요구사항이 있을 때만 사용
     """
     if not current_user.is_active:
-        raise HTTPException(
-            status_code=400,
-            detail="User is already deactivated"
-        )
+        raise HTTPException(status_code=400, detail="User is already deactivated")
 
     # RAW SQL: UPDATE users SET is_active = FALSE, updated_at = NOW() WHERE id = ?
     current_user.is_active = False

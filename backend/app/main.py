@@ -14,6 +14,7 @@ API 문서 확인:
     http://localhost:8000/docs (Swagger UI)
     http://localhost:8000/redoc (ReDoc)
 """
+
 from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
@@ -28,10 +29,10 @@ logger = get_logger(__name__)
 
 Base.metadata.create_all(bind=engine)
 
-logger.info("Application starting", extra={
-    "project": settings.PROJECT_NAME,
-    "version": settings.VERSION
-})
+logger.info(
+    "Application starting",
+    extra={"project": settings.PROJECT_NAME, "version": settings.VERSION},
+)
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
@@ -138,7 +139,7 @@ async def root():
     return {
         "message": "FastAPI Backend API",
         "version": settings.VERSION,
-        "docs": "/docs"
+        "docs": "/docs",
     }
 
 
@@ -181,10 +182,7 @@ async def health_check(db: Session = Depends(get_db)):
         - 로드밸런서에서 이 엔드포인트로 서버 상태 확인 권장
         - DB 연결 실패 시에도 200 OK 반환 (상태는 unhealthy)
     """
-    health_status = {
-        "status": "healthy",
-        "version": settings.VERSION
-    }
+    health_status = {"status": "healthy", "version": settings.VERSION}
 
     try:
         db.execute(text("SELECT 1"))

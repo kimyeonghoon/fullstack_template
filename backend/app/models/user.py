@@ -19,6 +19,7 @@ SQLAlchemy ORM을 사용하여 users 테이블을 정의합니다.
         INDEX idx_username (username)
     );
 """
+
 from sqlalchemy import Column, Integer, String, Boolean, DateTime
 from sqlalchemy.sql import func
 from app.database import Base

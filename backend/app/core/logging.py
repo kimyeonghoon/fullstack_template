@@ -3,6 +3,7 @@
 
 JSON 형식의 로그를 출력하여 모니터링 도구(Datadog, ELK 등)에서 쉽게 파싱할 수 있습니다.
 """
+
 import logging
 import sys
 import json
