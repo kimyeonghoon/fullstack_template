@@ -125,7 +125,10 @@ class Settings(BaseSettings):
             - pymysql 드라이버 사용 (순수 Python, Docker 환경에 적합)
             - 이 필드는 계산 속성이므로 개별 설정이 변경되면 자동으로 갱신됩니다
         """
-        return f"mysql+pymysql://{self.MYSQL_USER}:{self.MYSQL_PASSWORD}@{self.MYSQL_HOST}:{self.MYSQL_PORT}/{self.MYSQL_DATABASE}"
+        return (
+            f"mysql+pymysql://{self.MYSQL_USER}:{self.MYSQL_PASSWORD}"
+            f"@{self.MYSQL_HOST}:{self.MYSQL_PORT}/{self.MYSQL_DATABASE}"
+        )
 
     BACKEND_CORS_ORIGINS: Union[str, List[str]] = ["*"]
 
