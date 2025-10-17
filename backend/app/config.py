@@ -10,6 +10,7 @@ Pydantic의 BaseSettings를 사용하여 타입 안전성과 자동 검증을 �
     print(settings.PROJECT_NAME)
     print(settings.DATABASE_URL)  # 자동으로 생성된 DB URL
 """
+
 from typing import List, Union
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import field_validator, computed_field
@@ -43,10 +44,7 @@ class Settings(BaseSettings):
     """
 
     model_config = SettingsConfigDict(
-        env_file=".env",
-        env_file_encoding="utf-8",
-        case_sensitive=True,
-        extra="ignore"
+        env_file=".env", env_file_encoding="utf-8", case_sensitive=True, extra="ignore"
     )
 
     PROJECT_NAME: str = "FastAPI Backend"
@@ -85,10 +83,11 @@ class Settings(BaseSettings):
         """
         if "your-secret-key" in v.lower() or "change" in v.lower():
             import warnings
+
             warnings.warn(
                 "⚠️  프로덕션에서는 반드시 SECRET_KEY를 변경하세요! "
                 "'openssl rand -hex 32' 명령어로 생성 가능합니다.",
-                UserWarning
+                UserWarning,
             )
 
         if len(v) < 32:
@@ -128,11 +127,11 @@ class Settings(BaseSettings):
         """
         return f"mysql+pymysql://{self.MYSQL_USER}:{self.MYSQL_PASSWORD}@{self.MYSQL_HOST}:{self.MYSQL_PORT}/{self.MYSQL_DATABASE}"
 
-    BACKEND_CORS_ORIGINS: List[str] = ["*"]
+    BACKEND_CORS_ORIGINS: Union[str, List[str]] = ["*"]
 
     @field_validator("BACKEND_CORS_ORIGINS", mode="before")
     @classmethod
-    def assemble_cors_origins(cls, v: Union[str, List[str]]) -> List[str]:
+    def assemble_cors_origins(cls, v: Union[str, List[str]]) -> Union[str, List[str]]:
         """CORS origins를 리스트로 정규화
 
         환경 변수에서 문자열로 받은 값을 리스트로 변환합니다.

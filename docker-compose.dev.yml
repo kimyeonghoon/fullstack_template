@@ -119,8 +119,10 @@ services:
       - "5678:5678"
     volumes:
       - ./backend/app:/app/app
+      - ./backend/tests:/app/tests
       - ./backend/requirements.txt:/app/requirements.txt
       - /app/app/__pycache__
+      - /app/tests/__pycache__
     env_file:
       - ./backend/.env
     environment:

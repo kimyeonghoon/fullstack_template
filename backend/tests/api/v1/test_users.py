@@ -34,8 +34,8 @@ class TestGetCurrentUser:
         # When: 현재 사용자 정보 요청
         response = client.get("/api/v1/users/me")
 
-        # Then: 401 Unauthorized
-        assert response.status_code == 401
+        # Then: 403 Forbidden (FastAPI HTTPBearer 기본 동작)
+        assert response.status_code == 403
 
     def test_get_current_user_invalid_token(self, client: TestClient):
         """잘못된 토큰으로 사용자 정보 조회 시도"""
