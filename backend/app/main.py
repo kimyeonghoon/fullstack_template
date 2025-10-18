@@ -23,9 +23,21 @@ from app.config import settings
 from app.database import engine, Base, get_db
 from app.api.v1 import auth, users
 from app.core.logging import setup_logging, get_logger
+import sentry_sdk
+from sentry_sdk.integrations.fastapi import FastApiIntegration
 
 setup_logging("INFO")
 logger = get_logger(__name__)
+
+if settings.SENTRY_DSN:
+    sentry_sdk.init(
+        dsn=settings.SENTRY_DSN,
+        environment=settings.ENVIRONMENT,
+        integrations=[FastApiIntegration()],
+        traces_sample_rate=0.1,
+        profiles_sample_rate=0.1,
+    )
+    logger.info("Sentry initialized", extra={"environment": settings.ENVIRONMENT})
 
 Base.metadata.create_all(bind=engine)
 

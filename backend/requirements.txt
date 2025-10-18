@@ -8,6 +8,7 @@ gunicorn==23.0.0
 # 데이터베이스
 sqlalchemy==2.0.36
 pymysql==1.1.1
+alembic==1.14.0
 
 # 인증 및 보안
 python-jose[cryptography]==3.3.0
@@ -25,6 +26,9 @@ email-validator==2.2.0
 
 # 추가 보안 및 성능
 cryptography==44.0.0
+
+# 에러 트래킹
+sentry-sdk[fastapi]==2.19.2
 
 # 테스트 도구
 pytest==8.3.4

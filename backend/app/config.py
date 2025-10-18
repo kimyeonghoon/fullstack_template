@@ -132,6 +132,9 @@ class Settings(BaseSettings):
 
     BACKEND_CORS_ORIGINS: Union[str, List[str]] = ["*"]
 
+    SENTRY_DSN: str = ""
+    ENVIRONMENT: str = "development"
+
     @field_validator("BACKEND_CORS_ORIGINS", mode="before")
     @classmethod
     def assemble_cors_origins(cls, v: Union[str, List[str]]) -> Union[str, List[str]]:

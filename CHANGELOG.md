@@ -7,14 +7,59 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Planned (v1.0.0)
-- Alembic 마이그레이션 설정
+### Planned (v2.0.0)
 - Redis 캐싱 통합
 - Celery 비동기 작업
-- Sentry 에러 트래킹
 - 인증 템플릿 완성 (templates/)
 - 상태 관리 라이브러리 (Zustand)
 - 다크 모드 지원
+
+## [0.9.7] - 2025-10-18
+
+### Added
+- **Alembic 1.14.0** 데이터베이스 마이그레이션 설정
+- **Sentry 2.19.2** 에러 트래킹 통합
+- Alembic 사용 가이드 (backend/alembic/README.md)
+- 프로덕션 필수 인프라 완성
+
+### Changed
+- requirements.txt: alembic, sentry-sdk 추가
+- app/config.py: SENTRY_DSN, ENVIRONMENT 설정 추가
+- app/main.py: Sentry 초기화 코드 추가
+- .env.example: Sentry 설정 예시 추가
+
+### Documentation
+- EXTENSIONS.md: 11개 확장 기능 가이드 추가 (v0.9.6)
+- 프로덕션 준비 완료: DB 마이그레이션 + 에러 모니터링
+
+## [0.9.6] - 2025-10-18
+
+### Added
+- **EXTENSIONS.md**: 11개 확장 기능 구현 가이드
+  - 파일 업로드 (S3/MinIO)
+  - 이메일 인증
+  - 비밀번호 재설정
+  - 소셜 로그인 (OAuth 2.0)
+  - 페이지네이션 (Offset/Cursor)
+  - 검색/필터링
+  - 푸시 알림 (FCM)
+  - Sentry 에러 트래킹
+  - Admin 대시보드
+  - Redis 캐싱
+  - Celery 배치 작업
+- TDD 단계별 예제 코드
+- 우선순위 로드맵 (Phase 1/2/3)
+- 예상 소요 시간 명시
+
+### Philosophy
+- "최소한의 견고한 기반" 템플릿으로 확립
+- 확장 기능은 EXTENSIONS.md 참고하여 선택 추가
+
+## [0.9.5] - 2025-10-18
+
+### Changed
+- 문서 현행화: React Native 0.78.3, React 19.0.0 반영
+- VERSIONS.md, README.md, CHANGELOG.md, ARCHITECTURE.md 업데이트
 
 ## [0.9.0] - 2025-10-18
 

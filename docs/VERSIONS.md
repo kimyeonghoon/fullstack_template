@@ -14,6 +14,7 @@
 - **SQLAlchemy**: 2.0.36
 - **PyMySQL**: 1.1.1
 - **MySQL**: 8.0+
+- **Alembic**: 1.14.0 (마이그레이션)
 
 ### 인증 및 보안
 - **python-jose[cryptography]**: 3.3.0
@@ -28,6 +29,7 @@
 ### 기타
 - **python-multipart**: 0.0.20 (파일 업로드)
 - **python-dotenv**: 1.0.1 (환경 변수)
+- **sentry-sdk[fastapi]**: 2.19.2 (에러 트래킹)
 
 ## 프론트엔드 (JavaScript/TypeScript)
 
@@ -117,6 +119,17 @@
 
 ## 중요 변경사항
 
+### 2025년 10월 업데이트 (v0.9.7)
+
+**프로덕션 필수 인프라 추가:**
+- Alembic 1.14.0 - 데이터베이스 마이그레이션 시스템
+- Sentry 2.19.2 - 에러 트래킹 및 모니터링
+- 프로덕션 준비 완료 (DB 변경 관리 + 에러 모니터링)
+
+**문서:**
+- EXTENSIONS.md - 11개 확장 기능 가이드 (v0.9.6)
+- backend/alembic/README.md - 마이그레이션 사용 가이드
+
 ### 2025년 10월 업데이트 (v0.9.0)
 
 **백엔드:**
@@ -152,13 +165,11 @@
 - 성능 최적화 (`useCallback`, `useMemo`)
 - Android Gradle 8.6.0, Gradle 8.12
 
-## 다음 업데이트 예정 (v1.0.0)
+## 다음 업데이트 예정 (v2.0.0)
 
 ### 백엔드
-- [ ] Alembic 마이그레이션 설정 추가
 - [ ] Redis 캐싱 통합
 - [ ] Celery 비동기 작업
-- [ ] Sentry 에러 트래킹
 - [ ] 추가 API 엔드포인트 예제
 
 ### 프론트엔드
