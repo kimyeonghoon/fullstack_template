@@ -15,6 +15,10 @@
 - Python/Node.js 로컬 설치 금지
 - WiFi 디버깅 사용 ([docs/WIFI_DEBUGGING.md](docs/WIFI_DEBUGGING.md))
 
+**작업 환경 규칙:**
+- ✅ **Docker 사용 (원칙)**: Metro 서버, npm install, React Native Web, 모든 Node.js 작업, 개발 서버 실행
+- ⚠️ **호스트 사용 (예외)**: Android APK 빌드만 (`./gradlew assembleDebug`) - Docker에서 OOM 문제로 불가피
+
 ### 3. 타입 안전성
 ```python
 # Python: 타입 힌트 필수
