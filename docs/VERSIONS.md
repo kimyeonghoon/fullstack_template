@@ -32,38 +32,57 @@
 ## 프론트엔드 (JavaScript/TypeScript)
 
 ### 코어
-- **Node.js**: 20+ (LTS)
-- **React Native**: 최신 버전 (0.75+)
-- **TypeScript**: 최신 버전 (5.x)
+- **Node.js**: 18+ (LTS)
+- **React**: 19.0.0
+- **React Native**: 0.78.3
+- **React DOM**: 19.0.0
+- **React Native Web**: 0.21.2
+- **TypeScript**: 5.0.4
 
-### UI 라이브러리
-- **react-native-paper**: 5.12.5
-- **react-native-vector-icons**: 10.2.0
-- **react-native-safe-area-context**: 4.14.0
+### 빌드 도구
+- **@babel/core**: 7.28.4
+- **@react-native/babel-preset**: 0.78.3
+- **@react-native/metro-config**: 0.78.3
+- **Webpack**: 5.102.1
+- **Webpack Dev Server**: 5.2.2
+- **Webpack CLI**: 6.0.1
+- **HTML Webpack Plugin**: 5.6.4
+- **Babel Loader**: 10.0.0
 
-### 네비게이션
-- **@react-navigation/native**: 6.1.18
-- **@react-navigation/stack**: 6.4.1
-- **@react-navigation/bottom-tabs**: 6.6.1
-- **react-native-screens**: 3.34.0
-- **react-native-gesture-handler**: 2.20.2
+### React Native 도구
+- **@react-native-community/cli**: 15.0.1
+- **@react-native-community/cli-platform-android**: 15.0.1
+- **@react-native-community/cli-platform-ios**: 15.0.1
+- **@react-native/eslint-config**: 0.78.3
+- **@react-native/typescript-config**: 0.78.3
 
-### 데이터 및 상태 관리
-- **axios**: 1.7.9
-- **@react-native-async-storage/async-storage**: 2.1.0
+### 개발 도구
+- **ESLint**: 8.19.0
+- **Prettier**: 2.8.8
+- **Jest**: 29.6.3
+- **@types/jest**: 29.5.13
+- **@types/react**: 19.0.0
+- **@types/react-test-renderer**: 19.0.0
+- **react-test-renderer**: 19.0.0
 
-## 개발 도구
+## 테스트 및 코드 품질
 
 ### 백엔드
-- **pytest**: 최신 버전 (테스트)
-- **pytest-asyncio**: 최신 버전 (비동기 테스트)
-- **httpx**: 최신 버전 (API 테스트)
-- **alembic**: 최신 버전 (데이터베이스 마이그레이션)
+- **pytest**: 8.3.4
+- **pytest-cov**: 6.0.0 (커버리지)
+- **pytest-asyncio**: 0.24.0 (비동기 테스트)
+- **httpx**: 0.28.1 (API 테스트)
+- **Black**: 자동 포맷팅 (120자)
+- **Flake8**: 린트
+- **Mypy**: 타입 체크
+- **slowapi**: 0.1.9 (Rate Limiting)
 
 ### 프론트엔드
-- **Metro**: React Native 기본 번들러
-- **ESLint**: 코드 린팅
-- **Prettier**: 코드 포맷팅
+- **Metro**: 0.78.3 (React Native 번들러)
+- **ESLint**: 8.19.0 (린트)
+- **Prettier**: 2.8.8 (포맷팅)
+- **Jest**: 29.6.3 (테스트)
+- **Webpack**: 5.102.1 (웹 번들러)
 
 ## 인프라
 
@@ -92,25 +111,31 @@
 - Node.js 18 LTS 호환
 
 ### React Native 버전
-- 0.75.x 테스트 완료
-- 0.74.x 호환 가능
+- 0.78.3 테스트 완료
+- React 19.0.0 통합
+- React Native Web 0.21.2 지원
 
 ## 중요 변경사항
 
-### 2025년 1월 업데이트
+### 2025년 10월 업데이트 (v0.9.0)
 
 **백엔드:**
-- FastAPI 0.115.6으로 업데이트 (이전: 0.109.0)
-- Pydantic 2.10.3으로 업데이트 - `model_config` 사용
-- SQLAlchemy 2.0.36으로 업데이트
-- Uvicorn 0.34.0으로 업데이트
-- cryptography 명시적 추가 (44.0.0)
+- FastAPI 0.115.6 (안정 버전)
+- Pydantic 2.10.3 - `model_config` 사용
+- SQLAlchemy 2.0.36
+- Uvicorn 0.34.0
+- Gunicorn 23.0.0
+- cryptography 44.0.0
+- pytest 8.3.4 + 커버리지 80% 필수
+- slowapi 0.1.9 (Rate Limiting)
 
 **프론트엔드:**
-- React Native Paper 5.12.5
-- React Navigation 6.1.18
-- Axios 1.7.9
-- TypeScript 타입 안전성 개선
+- **React Native 0.78.3** (최신)
+- **React 19.0.0** (메이저 업그레이드)
+- **React Native Web 0.21.2** (웹 지원 추가)
+- TypeScript 5.0.4
+- Webpack 5.102.1 (웹 번들링)
+- Jest 29.6.3 (테스트)
 
 ### 주요 변경사항 상세
 
@@ -119,22 +144,29 @@
 - `@computed_field` 데코레이터 추가
 - 타입 힌트 개선
 
-#### React/TypeScript 개선
-- `useCallback`, `useMemo` 훅 추가로 성능 최적화
-- Axios 타입 정의 개선
-- 더 엄격한 타입 체크
+#### React Native 0.78.3 주요 변경사항
+- React 19.0.0 통합 (메이저 업데이트)
+- React Native Web 지원 추가 (0.21.2)
+- Webpack 5 기반 웹 번들링
+- TypeScript 5.0.4 엄격 모드
+- 성능 최적화 (`useCallback`, `useMemo`)
+- Android Gradle 8.6.0, Gradle 8.12
 
-## 다음 업데이트 예정
+## 다음 업데이트 예정 (v1.0.0)
 
 ### 백엔드
-- [ ] Alembic 마이그레이션 예제 추가
-- [ ] 테스트 코드 템플릿 추가
-- [ ] Redis 캐싱 예제 추가
+- [ ] Alembic 마이그레이션 설정 추가
+- [ ] Redis 캐싱 통합
+- [ ] Celery 비동기 작업
+- [ ] Sentry 에러 트래킹
+- [ ] 추가 API 엔드포인트 예제
 
 ### 프론트엔드
-- [ ] 상태 관리 라이브러리 추가 (Zustand/Redux)
-- [ ] 오프라인 지원 예제
-- [ ] 푸시 알림 설정
+- [ ] 인증 템플릿 완성 (templates/)
+- [ ] 상태 관리 라이브러리 추가 (Zustand)
+- [ ] 오프라인 지원 (AsyncStorage)
+- [ ] 푸시 알림 (FCM)
+- [ ] 다크 모드 지원
 
 ## 문의
 

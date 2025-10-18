@@ -7,13 +7,14 @@
 ```mermaid
 graph TB
     subgraph "클라이언트"
-        A[React Native App]
-        B[웹 브라우저]
+        A[React Native App<br/>iOS/Android]
+        B[웹 브라우저<br/>React Native Web]
     end
 
     subgraph "Docker 환경"
         subgraph "프론트엔드"
             C[Metro Server<br/>Port: 8081]
+            C2[Webpack Dev Server<br/>Port: 3000]
         end
 
         subgraph "백엔드"
@@ -28,8 +29,10 @@ graph TB
 
     A -->|WiFi Debugging| C
     A -->|HTTP/HTTPS| D
-    B -->|HTTP| D
+    B -->|HTTP| C2
+    B -->|HTTP/HTTPS| D
     C -->|Hot Reload| A
+    C2 -->|Hot Reload| B
     D --> E
     E -->|SQLAlchemy ORM| F
 
@@ -143,10 +146,11 @@ graph TB
         end
 
         subgraph "frontend 컨테이너"
-            F1[Node.js 20]
-            F2[React Native CLI]
+            F1[Node.js 18+]
+            F2[React Native 0.78.3]
             F3[Metro Bundler]
-            F4[Volume: ./frontend:/app]
+            F4[Webpack Dev Server<br/>Port: 3000]
+            F5[Volume: ./frontend:/app]
         end
 
         subgraph "mysql 컨테이너"
@@ -192,13 +196,22 @@ fullstack_template/
 │   └── requirements.txt
 │
 ├── frontend/                   # React Native 프론트엔드
-│   ├── src/
-│   │   ├── api/               # API 클라이언트
-│   │   ├── components/        # 재사용 컴포넌트
-│   │   ├── navigation/        # 네비게이션
-│   │   ├── screens/           # 화면
-│   │   └── types/             # TypeScript 타입
-│   └── package.json
+│   ├── MobileApp/             # React Native 프로젝트
+│   │   ├── android/           # Android 네이티브
+│   │   ├── ios/               # iOS 네이티브
+│   │   ├── public/            # 웹 정적 파일
+│   │   ├── __tests__/         # Jest 테스트
+│   │   ├── App.tsx            # 메인 앱
+│   │   ├── index.js           # RN 엔트리
+│   │   ├── index.web.js       # Web 엔트리
+│   │   ├── webpack.config.js  # 웹 번들러
+│   │   └── package.json
+│   ├── templates/             # 인증 템플릿 (참고용)
+│   │   ├── api.ts
+│   │   ├── authService.ts
+│   │   ├── AuthContext.tsx
+│   │   └── LoginScreen.tsx
+│   └── Dockerfile.dev
 │
 ├── docs/                       # 문서
 │   ├── ARCHITECTURE.md        # 이 파일

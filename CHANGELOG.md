@@ -7,29 +7,44 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Planned (v1.0.0)
+- Alembic 마이그레이션 설정
+- Redis 캐싱 통합
+- Celery 비동기 작업
+- Sentry 에러 트래킹
+- 인증 템플릿 완성 (templates/)
+- 상태 관리 라이브러리 (Zustand)
+- 다크 모드 지원
+
+## [0.9.0] - 2025-10-18
+
 ### Added
-- 추가된 기능들을 여기에 나열
+- **React Native 0.78.3** 업그레이드
+- **React 19.0.0** 통합 (메이저 업데이트)
+- **React Native Web 0.21.2** 지원 추가
+- **Webpack 5.102.1** 웹 번들링
+- TypeScript 5.0.4 엄격 모드
+- Android Gradle 8.6.0, Gradle 8.12
+- MobileApp 프로젝트 초기화
+- 인증 템플릿 파일 (templates/)
+- React Native Web 엔트리포인트 (index.web.js)
+- Webpack Dev Server 설정
 
 ### Changed
-- 변경된 기능들을 여기에 나열
+- 프론트엔드 구조 개편 (templates → MobileApp)
+- Node.js 최소 버전: 18+ (이전 20+)
+- package.json 버전: 0.9.0
 
-### Deprecated
-- 곧 제거될 기능들을 여기에 나열
+### Documentation
+- VERSIONS.md: 패키지 버전 전면 업데이트
+- README.md: React Native 0.78.3 반영
+- 문서 현행화 완료
 
-### Removed
-- 제거된 기능들을 여기에 나열
-
-### Fixed
-- 버그 수정 사항을 여기에 나열
-
-### Security
-- 보안 관련 변경사항을 여기에 나열
-
-## [1.0.0] - 2025-01-17
+## [0.8.0] - 2025-01-17
 
 ### Added
 - FastAPI 0.115.6 + Python 3.11 백엔드
-- React Native 0.75+ + TypeScript 프론트엔드
+- React Native + TypeScript 프론트엔드 (초기 버전)
 - MySQL 8.0 데이터베이스
 - Docker + Docker Compose 개발 환경
 - JWT 인증 시스템 (Access + Refresh 토큰)

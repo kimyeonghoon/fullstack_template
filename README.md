@@ -18,13 +18,14 @@ FastAPI + React Native를 사용한 모바일 앱 개발 템플릿입니다.
 - **Docker**: 컨테이너화
 
 ### 프론트엔드
-- **Node.js**: 20+
-- **React Native**: 최신 버전 (0.75+)
-- **TypeScript**: 최신 버전
-- **React Native Paper**: 5.12.5 - Material Design UI 컴포넌트
-- **React Navigation**: 6.1.18 - 네비게이션 라이브러리
-- **Axios**: 1.7.9 - HTTP 클라이언트
-- **AsyncStorage**: 2.1.0 - 로컬 데이터 저장
+- **Node.js**: 18+
+- **React**: 19.0.0 - 최신 React 메이저 버전
+- **React Native**: 0.78.3 - 크로스 플랫폼 모바일 프레임워크
+- **React Native Web**: 0.21.2 - 웹 지원
+- **TypeScript**: 5.0.4 - 정적 타입 검사
+- **Webpack**: 5.102.1 - 웹 번들러
+- **Jest**: 29.6.3 - 테스트 프레임워크
+- **Metro**: 0.78.3 - React Native 번들러
 
 ## 📚 문서
 
@@ -109,12 +110,25 @@ fullstack_template/
 │   ├── requirements.txt
 │   └── .env.example
 ├── frontend/                   # React Native 프론트엔드
-│   ├── templates/             # 프론트엔드 템플릿 파일
-│   │   ├── api.ts             # API 클라이언트
-│   │   ├── authService.ts     # 인증 서비스
-│   │   ├── AuthContext.tsx    # 인증 컨텍스트
-│   │   ├── LoginScreen.tsx    # 로그인 화면
-│   │   └── App.tsx            # 메인 App 컴포넌트
+│   ├── MobileApp/             # React Native 프로젝트
+│   │   ├── android/           # Android 네이티브 코드
+│   │   ├── ios/               # iOS 네이티브 코드
+│   │   ├── public/            # 웹 정적 파일
+│   │   ├── __tests__/         # Jest 테스트
+│   │   ├── App.tsx            # 메인 앱 컴포넌트
+│   │   ├── index.js           # React Native 엔트리
+│   │   ├── index.web.js       # React Native Web 엔트리
+│   │   ├── package.json       # Node.js 패키지
+│   │   ├── tsconfig.json      # TypeScript 설정
+│   │   ├── webpack.config.js  # Webpack 설정 (웹)
+│   │   └── metro.config.js    # Metro 번들러 설정
+│   ├── templates/             # 인증 템플릿 파일 (참고용)
+│   │   ├── api.ts             # API 클라이언트 예제
+│   │   ├── authService.ts     # 인증 서비스 예제
+│   │   ├── AuthContext.tsx    # 인증 컨텍스트 예제
+│   │   ├── LoginScreen.tsx    # 로그인 화면 예제
+│   │   └── App.tsx            # App 컴포넌트 예제
+│   ├── Dockerfile.dev         # Metro 서버 Docker 이미지
 │   ├── setup-frontend.sh      # 프론트엔드 초기화 스크립트
 │   └── README.md
 ├── docker-compose.yml          # Docker Compose 설정
