@@ -14,6 +14,86 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 상태 관리 라이브러리 (Zustand)
 - 다크 모드 지원
 
+## [1.0.0] - 2025-10-18
+
+### 🎉 Production Ready Release
+
+이 릴리스로 템플릿이 **프로덕션 환경에서 사용 가능한 수준**으로 완성되었습니다.
+
+### Status
+- **✅ Production Ready**: 프로덕션 필수 인프라 완성
+- **✅ Stable API**: v1.x는 하위 호환성 유지, Breaking Change는 v2.0.0에서
+- **✅ Complete Documentation**: 14개 가이드 + 11개 확장 기능 가이드
+- **⚠️ Community Feedback Welcome**: 실제 사용 경험을 공유해주세요!
+
+### Core Features
+
+**백엔드:**
+- FastAPI 0.115.6 + Python 3.11
+- JWT 인증 (Access 30분 + Refresh 7일)
+- Alembic 1.14.0 데이터베이스 마이그레이션
+- Sentry 2.19.2 에러 트래킹
+- SQLAlchemy 2.0.36 + MySQL 8.0
+- Pydantic v2 검증
+- pytest 82% 커버리지
+
+**프론트엔드:**
+- React Native 0.78.3
+- React 19.0.0 (최신 메이저 버전)
+- React Native Web 0.21.2 (웹 지원)
+- TypeScript 5.0.4 엄격 모드
+- Webpack 5.102.1 웹 번들링
+
+**인프라:**
+- Docker + Docker Compose (dev/prod)
+- WiFi 디버깅 지원
+- Hot Reload (백엔드/프론트엔드)
+
+**문서:**
+- 14개 상세 가이드 문서
+- EXTENSIONS.md (11개 확장 기능 가이드)
+- 완전한 API 문서 (Swagger UI)
+- TDD, 보안, 아키텍처 가이드
+
+### Philosophy
+
+**"최소한의 견고한 기반"**
+- 핵심 기능만 포함 (3.8MB 소스 코드)
+- 프로덕션 필수 인프라 완비
+- 확장 기능은 EXTENSIONS.md 참고
+- 가볍고 명확한 구조
+
+### Version Policy
+
+```
+v1.x.x - 하위 호환 유지
+├─ v1.1.0: 새 기능 추가 (하위 호환)
+├─ v1.0.1: 버그 수정
+└─ Breaking Change 없음
+
+v2.0.0 - Breaking Change 허용
+└─ API 대규모 개편, 구조 변경
+```
+
+### Upgrade from v0.9.x
+
+v0.9.7에서 v1.0.0으로 변경된 사항:
+- 버전 번호만 변경 (기능 변경 없음)
+- README.md 업데이트 (프로덕션 상태 명시)
+- 버전 정책 문서화
+
+v0.9.x 사용자는 **별도의 마이그레이션 작업 없이** v1.0.0을 사용할 수 있습니다.
+
+### Feedback & Contributing
+
+실제 프로젝트에서 사용하신 경험을 공유해주세요!
+
+- 버그 제보: [GitHub Issues](https://github.com/kimyeonghoon/fullstack_template/issues)
+- 기능 제안: [GitHub Issues](https://github.com/kimyeonghoon/fullstack_template/issues)
+- 질문/토론: [Discussions](https://github.com/kimyeonghoon/fullstack_template/discussions)
+
+---
+
 ## [0.9.7] - 2025-10-18
 
 ### Added
